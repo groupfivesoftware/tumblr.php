@@ -370,25 +370,8 @@ class Client
 
         return $this->getRequest($path, $options, false);
     }
-
     /**
-     * Make a GET request to the given endpoint and return the response
-     *
-     * @param string $path      the path to call on
-     * @param array  $options   the options to call with
-     * @param bool   $addApiKey whether or not to add the api key
-     *
-     * @return array the response object (parsed)
-     */
-    private function getRequest($path, $options, $addApiKey)
-    {
-        $response = $this->makeRequest('GET', $path, $options, $addApiKey);
-
-        return $this->parseResponse($response);
-    }
-
-    /**
-     * Make a GET request to the given endpoint and return the response
+     * Get post Info
      *
      * @param $blogName
      * @param $postId
@@ -408,6 +391,23 @@ class Client
         $path = $this->blogPath($blogName, '/posts');
         return $this->getRequest($path, $options, $addApiKey);
     }
+    /**
+     * Make a GET request to the given endpoint and return the response
+     *
+     * @param string $path      the path to call on
+     * @param array  $options   the options to call with
+     * @param bool   $addApiKey whether or not to add the api key
+     *
+     * @return array the response object (parsed)
+     */
+    private function getRequest($path, $options, $addApiKey)
+    {
+        $response = $this->makeRequest('GET', $path, $options, $addApiKey);
+
+        return $this->parseResponse($response);
+    }
+
+
 
     /**
      * Make a POST request to the given endpoint and return the response
@@ -514,7 +514,7 @@ class Client
      */
     private function blogUrl($blogName)
     {
-        if (strpos($blogName, '.') === false) {
+        if (strpos($blogName, '.tumblr.com') === false) {
             return "$blogName.tumblr.com";
         }
 
