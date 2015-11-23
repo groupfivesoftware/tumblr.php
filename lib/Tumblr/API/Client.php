@@ -388,6 +388,28 @@ class Client
     }
 
     /**
+     * Make a GET request to the given endpoint and return the response
+     *
+     * @param $blogName
+     * @param $postId
+     * @param bool $addApiKey whether or not to add the api key
+     *
+     * @internal param string $path the path to call on
+     * @internal param array $options the options to call with
+     * @return array the response object (parsed)
+     */
+    public function getPostInfo($blogName, $postId, $addApiKey)
+    {
+        $options = [
+            'id'=> $postId,
+            'notes_info'=>true,
+            'reblog_info'=>true
+        ];
+        $path = $this->blogPath($blogName, '/posts');
+        return $this->getRequest($path, $options, $addApiKey);
+    }
+
+    /**
      * Make a POST request to the given endpoint and return the response
      *
      * @param string $path      the path to call on
